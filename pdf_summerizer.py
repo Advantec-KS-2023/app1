@@ -117,7 +117,7 @@ if upload_file is not None:
     os.remove(pdf_path)
     gc.collect()
 '''
-st.code(code_to_display)
+#st.code(code_to_display)
 
 
 
