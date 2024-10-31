@@ -84,7 +84,7 @@ def summarize_text(text):
 # In[15]:
 
 
-st.title('PDF summarize')
+st.title('PDF summarize（PDF要約化）')
 
 
 # In[17]:
