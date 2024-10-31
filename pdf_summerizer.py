@@ -118,8 +118,7 @@ if upload_file is not None:
 
 # In[ ]:
 st.subheader('How does it works?')
-st.write('It works by use a pre-trained model. 
-no clue>')
+st.write('It works by use a pre-trained model. \n no clue>')
 
 
 
