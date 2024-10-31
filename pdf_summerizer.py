@@ -10,7 +10,7 @@ from PyPDF2 import PdfReader
 #import nltk
 #from nltk.tokenize import word_tokenize
 import os, torch, gc, requests, re
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 
 
 # In[3]:
@@ -51,8 +51,6 @@ def extract_the_text_from_url(url):
     text= soup.get_text()
     text = text.strip()
     return text
-
-
 
 def extract_the_text_from_pdf(file_path):
     reader = PdfReader(file_path)
