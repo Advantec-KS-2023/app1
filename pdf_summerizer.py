@@ -1,56 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[11]:
-
-
 import streamlit as st
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
 from PyPDF2 import PdfReader
-#import nltk
-#from nltk.tokenize import word_tokenize
 import os, torch, gc, requests, re
-#from bs4 import BeautifulSoup
-
-
-# In[3]:
-
-#nltk.download('punkt')
-#try:
-#    nltk.data.find('tokenizers/punkt')
-#except LookupError:
-#    nltk.download('punkt')
-
-
-# In[5]:
-
 
 MODEL_PATH = "tsmatz/mt5_summarize_japanese"
-#MODEL_PATH = 'google/mt5-large'
-
-
-# In[7]:
-
-
-#tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-#model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
 seq2seq = pipeline("summarization", model = MODEL_PATH, min_length=500)
-
-# In[9]:
-def extract_the_text_from_url(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        html_content = response.content
-    except requests.exceptions.RequestException as e:
-        st.error(f'An error occured while fetching the paper: {e}')
-
-    soup = BeautifulSoup(html_content, 'html.parser')
-    for script in soup(['script', 'style']):
-        script.decompose()
-    text= soup.get_text()
-    text = text.strip()
-    return text
 
 def extract_the_text_from_pdf(file_path):
     reader = PdfReader(file_path)
@@ -61,8 +15,6 @@ def extract_the_text_from_pdf(file_path):
         text += cs2
     return text.strip()
 
-
-# In[13]:
 gc.collect()
 
 def summarize_text(text):
@@ -81,21 +33,10 @@ def summarize_text(text):
     return summary.strip()
 
 
-# In[15]:
-
 
 st.title('PDF Summarization（PDF要約化）')
 
-
-# In[17]:
-
-
 upload_file = st.file_uploader('Choose a PDF file', type='pdf')
-
-                         
-
-# In[19]:
-
 
 if upload_file is not None:
     pdf_content = upload_file.getvalue()
@@ -116,61 +57,15 @@ if upload_file is not None:
     gc.collect()
 
 
-# In[ ]:
 st.subheader('How does it works?')
-code_to_display = '''#!/usr/bin/env python
-# coding: utf-8
-
-# In[11]:
-
-
+code_to_display = '''
 import streamlit as st
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
 from PyPDF2 import PdfReader
-#import nltk
-#from nltk.tokenize import word_tokenize
 import os, torch, gc, requests, re
-#from bs4 import BeautifulSoup
-
-
-# In[3]:
-
-#nltk.download('punkt')
-#try:
-#    nltk.data.find('tokenizers/punkt')
-#except LookupError:
-#    nltk.download('punkt')
-
-
-# In[5]:
-
 
 MODEL_PATH = "tsmatz/mt5_summarize_japanese"
-#MODEL_PATH = 'google/mt5-large'
-
-
-# In[7]:
-
-
-#tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-#model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
 seq2seq = pipeline("summarization", model = MODEL_PATH, min_length=500)
-
-# In[9]:
-def extract_the_text_from_url(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        html_content = response.content
-    except requests.exceptions.RequestException as e:
-        st.error(f'An error occured while fetching the paper: {e}')
-
-    soup = BeautifulSoup(html_content, 'html.parser')
-    for script in soup(['script', 'style']):
-        script.decompose()
-    text= soup.get_text()
-    text = text.strip()
-    return text
 
 def extract_the_text_from_pdf(file_path):
     reader = PdfReader(file_path)
@@ -181,8 +76,6 @@ def extract_the_text_from_pdf(file_path):
         text += cs2
     return text.strip()
 
-
-# In[13]:
 gc.collect()
 
 def summarize_text(text):
@@ -201,21 +94,10 @@ def summarize_text(text):
     return summary.strip()
 
 
-# In[15]:
-
 
 st.title('PDF Summarization（PDF要約化）')
 
-
-# In[17]:
-
-
 upload_file = st.file_uploader('Choose a PDF file', type='pdf')
-
-                         
-
-# In[19]:
-
 
 if upload_file is not None:
     pdf_content = upload_file.getvalue()
