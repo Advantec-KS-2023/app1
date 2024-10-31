@@ -4,7 +4,7 @@ from PyPDF2 import PdfReader
 import os, torch, gc, requests, re
 
 MODEL_PATH = "tsmatz/mt5_summarize_japanese"
-seq2seq = pipeline("summarization", model = MODEL_PATH, max_length = 700, min_length=500)
+seq2seq = pipeline("summarization", model = MODEL_PATH, max_length = 300, min_length=100)
 
 def extract_the_text_from_pdf(file_path):
     reader = PdfReader(file_path)
