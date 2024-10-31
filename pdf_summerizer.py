@@ -84,7 +84,7 @@ def summarize_text(text):
 # In[15]:
 
 
-st.title('PDF summarize（PDF要約化）')
+st.title('PDF Summarization（PDF要約化）')
 
 
 # In[17]:
@@ -117,6 +117,9 @@ if upload_file is not None:
 
 
 # In[ ]:
+st.subheader('How does it works?')
+st.write('It works by use a pre-trained model. 
+no clue>')
 
 
 
