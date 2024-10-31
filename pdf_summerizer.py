@@ -34,7 +34,7 @@ MODEL_PATH = "tsmatz/mt5_summarize_japanese"
 
 #tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 #model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
-seq2seq = pipeline("summarization", model = MODEL_PATH, max_length=500)
+seq2seq = pipeline("summarization", model = MODEL_PATH, min_length=500)
 
 # In[9]:
 def extract_the_text_from_url(url):
