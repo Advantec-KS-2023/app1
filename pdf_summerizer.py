@@ -106,7 +106,7 @@ if upload_file is not None:
     st.subheader('Extract Text: ')
     extractes_text = extract_the_text_from_pdf(pdf_path)
     #extractes_text = extract_the_text_from_url(url_name)
-    st.write(extractes_text[:1000]+"....")
+    st.write(extractes_text)
 
     st.subheader('Summary:')
     summary = seq2seq(extractes_text)[0]
